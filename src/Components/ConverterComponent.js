@@ -1,6 +1,7 @@
 import { Input, Button } from 'antd';
 import PropTypes from "prop-types";
 import React, { useState } from 'react';
+import styles from './ConverterComponent.module.css'
 
 
 
@@ -26,7 +27,7 @@ function ConverterComponent({baseRate}) {
     };
 
     return (
-        <div>
+        <div className={styles.converter}>
             <Input
                 placeholder="Enter amount and currency (e.g. 15 USD in RUB)"
                 value={inputValue}
