@@ -30,7 +30,7 @@ function HeaderComponent({ setBaseCurrency, baseCurrency }) {
                         <span>Select Base Currency</span>
                     </Dropdown>
                 </Menu.Item>
-                <Menu.Item className={styles.baseCurrency}>Base Currency: {baseCurrency}</Menu.Item>
+                <Menu.Item  disabled = "true" className={styles.baseCurrency}>Base Currency: {baseCurrency}</Menu.Item>
             </Menu>
         </Header>
     );

@@ -24,7 +24,7 @@ function App() {
             <HeaderComponent setBaseCurrency={setBaseCurrency} baseCurrency={baseCurrency} />
                 <Routes>
                     <Route exact path="/" element={<ConverterComponent />}/>
-                    <Route exact path="/rates" element={<RatesComponents baseRate={baseRate}/>}/>
+                    <Route exact path="/rates" element={<RatesComponents baseRate={baseRate} baseCurrency={baseCurrency}/>}/>
                 </Routes>
             <FooterComponent />
             </Router>
