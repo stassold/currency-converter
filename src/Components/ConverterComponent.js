@@ -1,10 +1,10 @@
 import { Input, Button } from 'antd';
+import PropTypes from "prop-types";
 import React, { useState } from 'react';
-import {convertCurrency} from  '../API/cbrApi'
 
 
 
-function ConverterComponent() {
+function ConverterComponent({baseRate}) {
     const [inputValue, setInputValue] = useState('');
     const [result, setResult] = useState('');
 
@@ -12,9 +12,10 @@ function ConverterComponent() {
         const matches = inputValue.match(/^(\d+(?:\.\d+)?)\s*(\w+)\s+in\s+(\w+)$/i);
         if (matches) {
             const [, amount, sourceCurrency, targetCurrency] = matches;
-            const exchangeRate = convertCurrency()
-            if (exchangeRate) {
-                const convertedAmount = parseFloat(amount) * exchangeRate;
+            const exchangeRate = baseRate
+            exchangeRate['RUB'] = 1
+            if (exchangeRate && exchangeRate[sourceCurrency]!=undefined && exchangeRate[targetCurrency] != undefined) {
+                const convertedAmount = parseFloat(amount) * Number(1/exchangeRate[sourceCurrency]) * exchangeRate[targetCurrency] ;
                 setResult(`${amount} ${sourceCurrency.toUpperCase()} = ${convertedAmount.toFixed(2)} ${targetCurrency.toUpperCase()}`);
             } else {
                 setResult(`Unable to convert ${sourceCurrency.toUpperCase()} to ${targetCurrency.toUpperCase()}`);
@@ -39,6 +40,9 @@ function ConverterComponent() {
     );
 }
 
+ConverterComponent.propTypes = {
+    baseRate: PropTypes.object.isRequired,
+};
 
 
 export default ConverterComponent;
