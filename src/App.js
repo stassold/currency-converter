@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
-import HeaderComponent from "./Components/UI/HeaderComponent";
-import FooterComponent from "./Components/UI/FooterComponent";
+import FooterComponent from './Components/UI/FooterComponent';
+import HeaderComponent from './Components/UI/HeaderComponent';
 
 function App() {
     const [baseCurrency, setBaseCurrency] = useState('USD');
-  return (
-    <div >
-        <HeaderComponent setBaseCurrency={setBaseCurrency} baseCurrency= {baseCurrency} ></HeaderComponent>
-        <FooterComponent></FooterComponent>
-    </div>
-  );
+    return (
+        <div>
+            <HeaderComponent setBaseCurrency={setBaseCurrency} baseCurrency={baseCurrency} />
+            <FooterComponent />
+        </div>
+    );
 }
 
 export default App;

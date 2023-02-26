@@ -1,12 +1,11 @@
-import React from 'react';
 import { Layout, Menu, Dropdown } from 'antd';
+import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './UI.module.css';
 
 const { Header } = Layout;
 
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'RUB'];
-
-
 
 function HeaderComponent({ setBaseCurrency, baseCurrency }) {
     const handleCurrencyChange = ({ key }) => {
@@ -34,5 +33,10 @@ function HeaderComponent({ setBaseCurrency, baseCurrency }) {
         </Header>
     );
 }
+
+HeaderComponent.propTypes = {
+    setBaseCurrency: PropTypes.func.isRequired,
+    baseCurrency: PropTypes.string.isRequired,
+};
 
 export default HeaderComponent;
