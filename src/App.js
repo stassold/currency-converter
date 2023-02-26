@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css';
 import {convertCurrency} from  './API/cbrApi'
 import ConverterComponent from "./Components/ConverterComponent";
@@ -19,10 +20,14 @@ function App() {
     const [baseRate, setBaseRate] = useState(null)
     return (
         <div>
+            <Router>
             <HeaderComponent setBaseCurrency={setBaseCurrency} baseCurrency={baseCurrency} />
-            <ConverterComponent />
-            <RatesComponents baseRate={baseRate}/>
+                <Routes>
+                    <Route exact path="/" element={<ConverterComponent />}/>
+                    <Route exact path="/rates" element={<RatesComponents baseRate={baseRate}/>}/>
+                </Routes>
             <FooterComponent />
+            </Router>
         </div>
     );
 }

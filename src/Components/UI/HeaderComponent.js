@@ -1,7 +1,9 @@
 import { Layout, Menu, Dropdown } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './UI.module.css';
+import { Link } from 'react-router-dom';
+import styles from './UI.module.css'
+
 
 const { Header } = Layout;
 
@@ -21,8 +23,8 @@ function HeaderComponent({ setBaseCurrency, baseCurrency }) {
     return (
         <Header>
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                <Menu.Item key="1">Converter</Menu.Item>
-                <Menu.Item key="2">Rates</Menu.Item>
+                <Menu.Item key="1"><Link to="/">Converter</Link></Menu.Item>
+                <Menu.Item key="2"><Link to="/rates">Rates</Link></Menu.Item>
                 <Menu.Item>
                     <Dropdown arrow overlay={currencyMenu} trigger={['click']}>
                         <span>Select Base Currency</span>
