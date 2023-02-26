@@ -1,36 +1,38 @@
-import { Layout, Menu, Dropdown } from 'antd';
+import { Layout, Menu, Select } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './UI.module.css'
 
-
 const { Header } = Layout;
 
-const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'RUB'];
+
+const currencies = ['RUB', 'USD', 'JPY', 'AUD', 'AZN', 'GBP', 'AMD', 'BYN', 'BGN',
+    'BRL', 'HUF', 'VND', 'HKD', 'GEL', 'DKK', 'AED', 'EUR', 'EGP', 'INR', 'IDR', 'KZT', 'CAD', 'QAR', 'KGS', 'CNY', 'MDL', 'NZD', 'NOK',
+    'PLN', 'RON', 'XDR', 'SGD', 'TJS', 'THB', 'TRY', 'TMT', 'UZS', 'UAH',
+    'CZK', 'SEK', 'CHF', 'RSD', 'ZAR', 'KRW',
+];
 
 function HeaderComponent({ setBaseCurrency, baseCurrency }) {
-    const handleCurrencyChange = ({ key }) => {
-        setBaseCurrency(key);
+    const handleCurrencyChange = (value) => {
+        setBaseCurrency(value);
     };
 
-    const menuItems = currencies.map((currency) => (
-        <Menu.Item key={currency}>{currency}</Menu.Item>
-    ));
-
-    const currencyMenu = <Menu onClick={handleCurrencyChange}>{menuItems}</Menu>;
+    const options = currencies.map(currency => (
+        <Select key={currency} value={currency}>{currency}</Select>
+    ))
 
     return (
         <Header>
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1"><Link to="/">Converter</Link></Menu.Item>
                 <Menu.Item key="2"><Link to="/rates">Rates</Link></Menu.Item>
-                <Menu.Item>
-                    <Dropdown arrow overlay={currencyMenu} trigger={['click']}>
-                        <span>Select Base Currency</span>
-                    </Dropdown>
+                <Menu.Item disabled={true}>
+                    <Select showSearch="true" style={{ width: 100 }} value={baseCurrency} onChange={handleCurrencyChange}>
+                        {options}
+                    </Select>
                 </Menu.Item>
-                <Menu.Item  disabled = "true" className={styles.baseCurrency}>Base Currency: {baseCurrency}</Menu.Item>
+                <Menu.Item disabled={true} className={styles.baseCurrency}>Base Currency: {baseCurrency}</Menu.Item>
             </Menu>
         </Header>
     );

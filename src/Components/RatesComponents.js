@@ -6,9 +6,12 @@ import React from 'react';
 function RatesComponents(props) {
     const { baseRate , baseCurrency } = props;
     const rate = baseRate
-    if(rate)
+    let ratebase = 1
+    if(rate) {
         rate['RUB'] = 1;
-    const ratebase = rate[baseCurrency]
+        ratebase = rate[baseCurrency]
+    }
+
     return (
         <div>
             <h2>Rates: </h2>
