@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import {convertCurrency} from  './API/cbrApi'
 import ConverterComponent from "./Components/ConverterComponent";
+import RatesComponents from "./Components/RatesComponents";
 import FooterComponent from './Components/UI/FooterComponent';
 import HeaderComponent from './Components/UI/HeaderComponent';
+
 
 
 
 function App() {
 
     useEffect(() => {
-       setBaseRate(convertCurrency())
+        convertCurrency().then((rates) => setBaseRate(rates));
     }, []);
 
     const [baseCurrency, setBaseCurrency] = useState('USD');
@@ -18,7 +20,8 @@ function App() {
     return (
         <div>
             <HeaderComponent setBaseCurrency={setBaseCurrency} baseCurrency={baseCurrency} />
-            <ConverterComponent baseRate={baseRate} />
+            <ConverterComponent />
+            <RatesComponents baseRate={baseRate}/>
             <FooterComponent />
         </div>
     );
